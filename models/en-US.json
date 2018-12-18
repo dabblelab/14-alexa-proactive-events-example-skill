@@ -25,19 +25,9 @@
             ]
           },
           {
-            "name":"MyNameIsIntent",
-            "slots":[
-                {
-                    "name":"name",
-                    "type":"AMAZON.US_FIRST_NAME"
-                }
-            ],
+            "name":"FindURLIntent",
             "samples":[
-                "{name}",
-                "{name} is my name",
-                "my name is {name}",
-                "i am {name}",
-                "you can call me {name}"
+                "what is the URL"
             ]
         }
         ]

@@ -8,7 +8,7 @@
           "apis": {
             "custom": {
               "endpoint": {
-                "uri": "ask-proactive-starter-default"
+                "uri": "ask-proactive-events-api"
               }
             }
           }

@@ -6,16 +6,15 @@
           "summary": "Starter Template for getting started with Proactive Events API for Alexa Skills",
           "examplePhrases": [
             "Alexa open proactive starter",
-            "Alexa tell hello world template I am Jeff",
-            "Alexa tell hello world template my name is Peter"
+            "Alexa ask proactive starter what is the URL"
           ],
           "keywords": [
             "keyword1",
             "keyword2",
             "keyword3"
           ],
-          "name": "basic-starter",
-          "description": "Sample Full Description",
+          "name": "proactive-events-api",
+          "description": "Starter Template for getting started with Proactive Events API for Alexa Skills",
           "smallIconUri": "https://s3.amazonaws.com/cdn.dabblelab.com/img/skill-template-default-sm.png",
           "largeIconUri": "https://s3.amazonaws.com/cdn.dabblelab.com/img/skill-template-default-lg.png"
         }
@@ -31,6 +30,42 @@
           "sourceDir": "lambda/custom"
         }
       }
+    },
+    "permissions": [
+      {
+        "name": "alexa::devices:all:notifications:write"
+      }
+    ],
+    "events": {
+        "publications": [
+          {
+            "eventName": "AMAZON.OrderStatus.Updated"
+          },
+          {
+            "eventName": "AMAZON.MessageAlert.Activated"
+          },
+          {
+            "eventName": "AMAZON.TrashCollectionAlert.Activated"
+          },
+          {
+            "eventName": "AMAZON.WeatherAlert.Activated"
+          }
+        ],
+        "endpoint": {
+          "uri": "your-arn-here"
+        },
+        "subscriptions": [
+          {
+            "eventName": "SKILL_PROACTIVE_SUBSCRIPTION_CHANGED"
+          }
+        ],
+        "regions": {
+          "NA": {
+            "endpoint": {
+              "uri": "your-arn-here"
+            }
+          }
+        }
     },
     "manifestVersion": "1.0",
     "privacyAndCompliance": {

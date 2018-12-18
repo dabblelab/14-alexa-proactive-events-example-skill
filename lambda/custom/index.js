@@ -8,26 +8,34 @@ const LaunchRequestHandler = {
     return handlerInput.requestEnvelope.request.type === 'LaunchRequest';
   },
   handle(handlerInput) {
-    const speechText = 'Hello there. What is your name?';
-    const repromptText = 'Can you tell me your name?';
-
+    const speechText = 'Turn on the Notifications for your Skill and check the User ID and AWS URL in your CloudWatch Logs.';
     return handlerInput.responseBuilder
       .speak(speechText)
-      .reprompt(repromptText)
-      .withSimpleCard('Example Card Title', "Example card body content.")
       .getResponse();
   },
 };
 
-const MyNameIsIntentHandler = {
+const ProactiveEventHandler = {
+  canHandle(handlerInput) {
+    console.log(handlerInput);
+    return handlerInput.requestEnvelope.request.type === 'AlexaSkillEvent.ProactiveSubscriptionChanged'
+  },
+  handle(handlerInput) {
+    console.log("AWS User " + handlerInput.requestEnvelope.context.System.user.userId);
+    console.log("API Endpoint " + handlerInput.requestEnvelope.context.System.apiEndpoint);
+    console.log("Permissions" + JSON.stringify(handlerInput.requestEnvelope.request.body.subscriptions));
+  },
+}
+
+const FindURLIntentHandler = {
   canHandle(handlerInput) {
     return handlerInput.requestEnvelope.request.type === 'IntentRequest'
-      && handlerInput.requestEnvelope.request.intent.name === 'MyNameIsIntent';
+      && handlerInput.requestEnvelope.request.intent.name === 'FindURLIntent';
   },
   handle(handlerInput) {
 
-    const nameSlot = handlerInput.requestEnvelope.request.intent.slots.name.value;
-    const speechText = `Hello ${nameSlot}. It's nice to meet you.`;
+    
+    const speechText = `Hello. Turn on the Notifications for your Skill and check the User ID and AWS URL in your CloudWatch Logs.`;
 
     return handlerInput.responseBuilder
       .speak(speechText)
@@ -41,7 +49,7 @@ const HelpIntentHandler = {
       && handlerInput.requestEnvelope.request.intent.name === 'AMAZON.HelpIntent';
   },
   handle(handlerInput) {
-    const speechText = 'You can introduce yourself by telling me your name';
+    const speechText = 'Turn on the Notifications for your Skill and check the User ID and AWS URL in your CloudWatch Logs.';
 
     return handlerInput.responseBuilder
       .speak(speechText)
@@ -64,6 +72,7 @@ const CancelAndStopIntentHandler = {
       .getResponse();
   },
 };
+
 
 const SessionEndedRequestHandler = {
   canHandle(handlerInput) {
@@ -95,9 +104,10 @@ const skillBuilder = Alexa.SkillBuilders.custom();
 exports.handler = skillBuilder
   .addRequestHandlers(
     LaunchRequestHandler,
-    MyNameIsIntentHandler,
+    FindURLIntentHandler,
     HelpIntentHandler,
     CancelAndStopIntentHandler,
+    ProactiveEventHandler,
     SessionEndedRequestHandler
   )
   .addErrorHandlers(ErrorHandler)
