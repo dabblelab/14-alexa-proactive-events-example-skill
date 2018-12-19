@@ -4,6 +4,8 @@ This is a template that can be used for integrating Proactive Events API into Al
 
 # Important Links 
 
+[Dabble Lab - Proactive Events API Video](https://www.youtube.com/watch?v=oMcHTMZDTVQ)
+
 [Proactive Events Launch Post - Amazon](https://developer.amazon.com/blogs/alexa/post/7822f3ee-1735-4eaa-9aa6-5b8e39953c07/proactiveeventsapi-launch-announcement)  
 
 [Proactive Events API - Technical Documentation](https://developer.amazon.com/docs/smapi/proactive-events-api.html)  
