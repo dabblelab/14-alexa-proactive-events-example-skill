@@ -1,0 +1,125 @@
+{
+	"info": {
+		"_postman_id": "e2a53109-14f0-479e-88ea-af9387f264c6",
+		"name": "Proactive Events API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authorization Token",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "client_credentials",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "your-client-id",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "your-client-secret",
+							"type": "text"
+						},
+						{
+							"key": "scope",
+							"value": "alexa::proactive_events",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://api.amazon.com/auth/O2/token",
+					"protocol": "https",
+					"host": [
+						"api",
+						"amazon",
+						"com"
+					],
+					"path": [
+						"auth",
+						"O2",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Trash Collection",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer your-token",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"timestamp\": \"2018-12-18T08:41:01.00Z\",\n    \"referenceId\": \"orangetango2221800f44-436a-4c47-8d9f-e14356bb010c\",\n    \"expiryTime\": \"2018-12-19T08:20:01.00Z\",\n    \"event\": {\n    \"name\": \"AMAZON.TrashCollectionAlert.Activated\",\n    \"payload\": {\n        \t\"alert\": {\n            \t\"garbageTypes\": [\n                \t\"COMPOSTABLE\",\n                \t\"RECYCLABLE_PLASTICS\"\n            \t],\n            \t\"collectionDayOfWeek\": \"TUESDAY\"\n        \t}\n    \t}\n\t},\n      \"relevantAudience\": {\n        \"type\": \"Unicast\",\n        \"payload\": {\n        \t\"user\": \"your-user-id\"\n        }\n    }\n}"
+				},
+				"url": {
+					"raw": "https://api.eu.amazonalexa.com/v1/proactiveEvents/stages/development",
+					"protocol": "https",
+					"host": [
+						"api",
+						"eu",
+						"amazonalexa",
+						"com"
+					],
+					"path": [
+						"v1",
+						"proactiveEvents",
+						"stages",
+						"development"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "a3c91980-273e-42b8-8690-21a596804db1",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "3d72ea1d-291d-4c0e-8b41-e2d9c40c8e65",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
